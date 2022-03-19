@@ -8,6 +8,8 @@ No momento, to usando a versão de desenvolvimento pq é a q tem anotação
 """
 
 import json
+import os
+import sys
 
 import discord
 from discord.ext.commands import Bot, command, Context
@@ -23,11 +25,19 @@ class Ibis(Bot):
         print(f"logado como {self.user}")
 
 
-bot = Ibis("!")
+if __name__ == "__main__":
+    bot = Ibis("!")
 
-activity = discord.Activity(state="Tramando a dominação mundial", name="a dominação mundial", type=discord.ActivityType.watching)
+    if os.path.exists("config.json"):           # Running local
+        with open("config.json", "r") as file:
+            discord_key = json.load(file)["discord_key"]
+    else:                                       # Running on heroku
+        discord_key = os.environ.get("discord_key", None)
 
-with open("config.json", "r") as file:
-    config = json.load(file)
+    if discord_key is None:
+        print("No discord key found. Exiting program")
+        sys.exit(-1)
 
-bot.run(config["discord_key"])
+    activity = discord.Activity(state="Tramando a dominação mundial", name="a dominação mundial", type=discord.ActivityType.watching)
+
+    bot.run(discord_key)
