@@ -17,17 +17,32 @@ from mainCog import MainCog
 
 
 class Ibis(Bot):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-    async def on_ready(self):
-        await self.add_cog(MainCog(self))
+    async def on_ready(self) -> None:
+        """Does the proper initialization for the async functions"""
+
+        await self.init_cogs()
+        await self.init_presence()
+
         print(f"logado como {self.user}")
+
+    async def init_presence(self) -> None:
+        """Sets the presence as something absolutely not menacing or sus"""
+
+        activity = discord.Activity(state="Tramando a dominação mundial",
+                                    name="a dominação mundial",
+                                    type=discord.ActivityType.watching)
+        await self.change_presence(activity=activity,
+                                   status=discord.enums.Status.idle)
+
+    async def init_cogs(self) -> None:
+        """Loads all the cogs"""
+        await self.add_cog(MainCog(self))
 
 
 if __name__ == "__main__":
-    bot = Ibis("!")
-
     if os.path.exists("config.json"):           # Running local
         with open("config.json", "r") as file:
             discord_key = json.load(file)["discord_key"]
@@ -38,6 +53,5 @@ if __name__ == "__main__":
         print("No discord key found. Exiting program")
         sys.exit(-1)
 
-    activity = discord.Activity(state="Tramando a dominação mundial", name="a dominação mundial", type=discord.ActivityType.watching)
-
+    bot = Ibis("!")
     bot.run(discord_key)
