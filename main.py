@@ -11,10 +11,6 @@ import json
 import os
 import sys
 
-print(os.environ)
-print(" ----- ")
-print(sys.path)
-print(" ----- ")
 import discord
 from discord.ext.commands import Bot, command, Context
 from mainCog import MainCog
