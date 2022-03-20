@@ -1,1 +1,2 @@
-discord.py
+# discord.py  -> For now, the git development version is too different. When
+# that goes live, the submodule can be removed and the requirement re-added
