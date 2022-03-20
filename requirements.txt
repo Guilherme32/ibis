@@ -1,3 +1,3 @@
 git+https://github.com/Rapptz/discord.py@master
 # discord.py  -> For now, the git development version is too different. When
-# that goes live, the submodule can be removed and the requirement re-added
+# that goes live, the file can be updated to the requirement commented
