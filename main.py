@@ -13,7 +13,7 @@ import sys
 
 print(os.environ)
 print(" ----- ")
-print(os.path)
+print(sys.path)
 print(" ----- ")
 import discord
 from discord.ext.commands import Bot, command, Context
