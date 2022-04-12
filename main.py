@@ -53,5 +53,5 @@ if __name__ == "__main__":
         print("No discord key found. Exiting program")
         sys.exit(-1)
 
-    bot = Ibis("!")
+    bot = Ibis("!", intents=discord.Intents.all())
     bot.run(discord_key)
