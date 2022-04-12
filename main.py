@@ -14,6 +14,7 @@ import sys
 import discord
 from discord.ext.commands import Bot, command, Context
 from mainCog import MainCog
+from help import MyHelpCommand
 
 
 class Ibis(Bot):
@@ -53,5 +54,7 @@ if __name__ == "__main__":
         print("No discord key found. Exiting program")
         sys.exit(-1)
 
-    bot = Ibis("!", intents=discord.Intents.all())
+    bot = Ibis("!",
+               intents=discord.Intents.all(),
+               help_command=MyHelpCommand())
     bot.run(discord_key)
